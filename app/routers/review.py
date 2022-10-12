@@ -16,7 +16,7 @@ async def get_reviews():
         raise HTTPException(status_code=503, detail=str(e))
 
 
-@review_router.post('/review', name='Create a review', tags=['Wines review'], response_model=ReviewFullDB,)
+@review_router.post('/review', name='Create a review', tags=['Wines review'], response_model=ReviewFullDB, )
 async def create_review(data: ReviewBaseDB):
     try:
         return reviewCore.save_one(data)
@@ -32,7 +32,7 @@ async def get_review(pid: str):
         raise HTTPException(status_code=503, detail=str(e))
 
 
-@review_router.patch('/review/{pid}', name='Update a review', tags=['Wines review'], response_model=ReviewFullDB)
+@review_router.patch('/review/update/{pid}', name='Update a review', tags=['Wines review'], response_model=MessageDB)
 async def update_review(pid: str, data: ReviewBaseDB):
     try:
         return reviewCore.update_one(pid, data)
