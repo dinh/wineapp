@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4.4.6
+    ports:
+      - 27017:27017
+    container_name: "mongodb"
+    networks:
+      - mongodb
+    restart: always
+    volumes:
+      - "~/storage/docker/mongodb-data:/data/db"
+
+  mongo-seed:
+    image: mongo:4.4.6
+    depends_on:
+      - mongodb
+    networks:
+      - mongodb
+    volumes:
+      - "./data/mongo-seed:/mongo-seed"
+    command:
+      "/mongo-seed/import.sh"
+
+  wineapp:
+    build: .
+    image: dinh/wineapp
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mongo-seed
+    container_name: wineapp
+    networks:
+      - mongodb
+
+networks:
+  mongodb: {}
