@@ -9,9 +9,9 @@ review_router = APIRouter()
 
 
 @review_router.get('/reviews', name='List reviews', tags=['Wines review'], response_model=List[ReviewFullDB])
-async def get_reviews(skip: int = 0, limit: Union[int, None] = None):
+async def get_reviews(page_size: int = 20, page_num: int = 1):
     try:
-        return reviewCore.get_all()
+        return reviewCore.get_all(page_size, page_num)
     except Exception as e:
         raise HTTPException(status_code=503, detail=str(e))
 

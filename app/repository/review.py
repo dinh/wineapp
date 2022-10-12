@@ -6,69 +6,15 @@ from app.repository.dbmanager import db
 from bson import ObjectId
 
 
-def get_all_review():
-    def id_limit(page_size=10, last_id=None):
-        """Function returns `page_size` number of documents after last_id
-        and the new last_id.
-        """
+def get_all_review(page_size: int, page_num: int):
+    # Calculate number of documents to skip
+    skips = page_size * (page_num - 1)
+    print(skips)
+    # Skip and limit
+    cursor = db['review'].find().skip(skips).limit(page_size)
 
-        """
-        filter = {
-            '_id': {
-                '$gt': ObjectId('6338ca7d2a28471c077dd97e')
-            }
-        }
-        sort = list({
-                        '_id': -1
-                    }.items())
-        limit = 20
-
-        result = db['review'].find(
-            filter=filter,
-            sort=sort,
-            limit=limit
-        )
-        """
-
-        if last_id is None:
-            # first page
-            cursor = db['review'].find({}).limit(page_size)
-        else:
-            cursor = db['review'].find({'_id': {'$gt': ObjectId(last_id)}}).limit(page_size)
-
-        # Get the data
-        data = [document for document in cursor]
-
-        if not data:
-            # No documents left
-            return None, None
-
-        # Since documents are naturally ordered with _id, last document will
-        # have max id.
-        last_id = data[-1]['_id']
-
-        return data, last_id
-
-    def skip_limit(page_size=10, page_num=1):
-        """returns a set of documents belonging to page number `page_num`
-        where size of each page is `page_size`.
-        """
-        # Calculate number of documents to skip
-        skips = page_size * (page_num - 1)
-        print(skips)
-        # Skip and limit
-        cursor = db['review'].find().skip(skips).limit(page_size)
-
-        # Return documents
-        return [document for document in cursor]
-        # return cursor
-
-    # return db['review'].find({}).limit(10)
-    # return skip_limit(10, 1)
-    data, last_id = id_limit(10, "6338ca7d2a28471c077dd97e")
-    print(last_id)
-
-    return data
+    # Return documents
+    return [document for document in cursor]
 
 
 """

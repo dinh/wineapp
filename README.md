@@ -1,18 +1,17 @@
-# README.md
-
-- [README.md](#readmemd)
 - [Wine Review API](#wine-review-api)
     - [A propos du dataset](#a-propos-du-dataset)
     - [La stack technique](#la-stack-technique)
         - [Pourquoi MongoDB ?](#pourquoi-mongodb-)
     - [Installation](#installation)
-        - [Lancer l'application](#lancer-lapplication)
+        - [Prérequis](#prérequis)
+        - [Cloner le repo](#cloner-le-repo)
+        - [Lancement de l'application](#lancement-de-lapplication)
+        - [Stopper l’application](#stopper-lapplication)
     - [Documentation](#documentation)
     - [Annexes](#annexes)
         - [Description des champs](#description-des-champs)
         - [Champs ayant une valeur nulle](#champs-ayant-une-valeur-nulle)
-        - [JsonSchema](#jsonschema)
-
+        - [Json Schema](#json-schema)
 
 # Wine Review API
 
@@ -46,14 +45,37 @@ Pour ce cas d’usage, une base de données de type document comme **MongoDB** e
 
 ## Installation
 
-- Installer ou mettre à jour Docker et Docker Compose pour disposer des dernières versions
-- Cloner le repo
+### Prérequis
 
-### Lancer l'application
+Installer ou mettre à jour Docker et Docker Compose pour disposer des dernières versions
 
-- Aller dans le répertoire racine et exécuter `docker-compose up -d`
--
-- Pour arrêter, taper `docker-compose down`
+### Cloner le repo
+
+```bash
+$>git clone https://github.com/dinh/wineapp.git
+```
+
+### Lancement de l'application
+
+Aller dans le répertoire racine et exécuter `docker-compose up -d`
+
+```bash
+$>cd wineapp
+$>docker-compose up -d
+```
+
+<aside>
+💡 Les données sont importées au démarrage. Si la base de données existe, l’import est annulé
+
+</aside>
+
+### Stopper l’application
+
+Entrer dans la ligne de commande
+
+```bash
+$>docker-compose down
+```
 
 ## Documentation
 
@@ -65,12 +87,12 @@ La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.
 
 |  | Description |
 | --- | --- |
-| country  | Pays de provenance du vin |
-| description |  Quelques phrases d'un sommelier décrivant le goût, l'odeur, l'aspect, le toucher, etc. du vin |
-| designation  | Appellation : Le vignoble de l'établissement vinicole d'où proviennent les raisins qui ont donné naissance au vin |
+| country | Pays de provenance du vin |
+| description | Quelques phrases d'un sommelier décrivant le goût, l'odeur, l'aspect, le toucher, etc. du vin |
+| designation | Appellation : Le vignoble de l'établissement vinicole d'où proviennent les raisins qui ont donné naissance au vin |
 | points | Le nombre de points que WineEnthusiast a attribué au vin sur une échelle de 1 à 100 (bien qu'ils disent qu'ils ne publient des critiques que pour les vins qui obtiennent une note supérieure à 80). |
-| price  |  Le coût d'une bouteille de vin |
-| province  | La province ou l'état d'où provient le vin |
+| price | Le coût d'une bouteille de vin |
+| province | La province ou l'état d'où provient le vin |
 | region_1 | La région viticole d'une province ou d'un état (par exemple Napa) |
 | region_2 | Parfois, des régions plus spécifiques sont spécifiées dans une zone viticole (par exemple Rutherford dans la vallée de Napa), mais cette valeur peut parfois être vide |
 | taster_name | Nom de la personne qui a goûté et évalué le vin. |
@@ -83,7 +105,7 @@ La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.
 
 Une analyse du fichier`winemag-data-130k-v2.json`avec `jq` permet d’identifier les champs pouvant contenir des valeurs nulles
 
-```
+```bash
 $>jq . winemag-data-130k-v2.json | grep -E -i null,$ | sort | uniq -c
 
 63        "country": null,
@@ -95,71 +117,72 @@ $>jq . winemag-data-130k-v2.json | grep -E -i null,$ | sort | uniq -c
 26244     "taster_name": null,
 31213     "taster_twitter_handle": null,
 1         "variety": null,
-
 ```
 
 Cela nous permet de créer un JsonSchema pour le dataset et nous permet de définir le modèle `Pydantic`
 
-### JsonSchema
+### Json Schema
 
-```bash
+Le JSON Schema est un format d'échange de données léger qui génère une documentation claire et facile à comprendre, facilitant ainsi la validation et les tests. JSON Schema est utilisé pour décrire la structure et les contraintes de validation des documents JSON. Dans notre cas, nous pourrions l’utiliser pour vérifier si les données scrappées évolue dans le temps. Nous pouvons l’utiliser  également pour générer le schema Pydantic.
+
+```json
 {
-    "$schema": "http://json-schema.org/draft-06/schema#",
-    "$ref": "#/definitions/Wine",
-    "definitions": {
-        "Wine": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "points": {
-                    "type": "string",
-                    "format": "integer"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "taster_name": {
-                    "type": "string"
-                },
-                "taster_twitter_handle": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "designation": {
-                    "type": "string"
-                },
-                "variety": {
-                    "type": "string"
-                },
-                "region_1": {
-                    "type": "string"
-                },
-                "region_2": {
-                    "type": "string"
-                },
-                "province": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "winery": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "description",
-                "points",
-                "title",
-                "winery"
-            ],
-            "title": "Wine"
+  "$schema": "<http://json-schema.org/draft-06/schema#>",
+  "$ref": "#/definitions/Wine",
+  "definitions": {
+    "Wine": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "points": {
+          "type": "string",
+          "format": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "taster_name": {
+          "type": "string"
+        },
+        "taster_twitter_handle": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "designation": {
+          "type": "string"
+        },
+        "variety": {
+          "type": "string"
+        },
+        "region_1": {
+          "type": "string"
+        },
+        "region_2": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "winery": {
+          "type": "string"
         }
+      },
+      "required": [
+        "description",
+        "points",
+        "title",
+        "winery"
+      ],
+      "title": "Wine"
     }
+  }
 }
 ```

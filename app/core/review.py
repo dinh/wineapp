@@ -10,8 +10,8 @@ from app.repository.review import delete_review
 
 class reviewCore:
     @staticmethod
-    def get_all() -> List[ReviewFullDB]:
-        return list(get_all_review())
+    def get_all(page_size: int, page_num: int) -> List[ReviewFullDB]:
+        return list(get_all_review(page_size, page_num))
 
     @staticmethod
     def get_one(pid: str) -> ReviewFullDB:
