@@ -83,18 +83,18 @@ La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.
 
 Une analyse du fichier`winemag-data-130k-v2.json`avec `jq` permet d’identifier les champs pouvant contenir des valeurs nulles
 
-```json
+```
 $>jq . winemag-data-130k-v2.json | grep -E -i null,$ | sort | uniq -c
 
-63     "country": null,
+63        "country": null,
 37465     "designation": null,
-8996     "price": null,
-63     "province": null,
+8996      "price": null,
+63        "province": null,
 21247     "region_1": null,
 79460     "region_2": null,
 26244     "taster_name": null,
 31213     "taster_twitter_handle": null,
-1     "variety": null,
+1         "variety": null,
 
 ```
 
