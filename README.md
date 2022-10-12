@@ -81,6 +81,14 @@ $>docker-compose down
 
 La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/docs`
 
+<aside>
+
+💡 Le endpoint `/api/review` affiche par défaut les 20 premiers résultats.
+Vous pouvez changer ce nombre avec le paramètre `page_size`
+Vous pouvez afficher les 20 résultats suivants en utilisant le paramètre `page_num=2`
+
+</aside>
+
 ## Annexes
 
 ### Description des champs
