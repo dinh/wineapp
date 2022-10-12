@@ -6,7 +6,7 @@
     - [La stack technique](#la-stack-technique)
         - [Pourquoi MongoDB ?](#pourquoi-mongodb-)
     - [Installation](#installation)
-        - [Lancer la c](#lancer-la-c)
+        - [Lancer l'application](#lancer-lapplication)
     - [Documentation](#documentation)
     - [Annexes](#annexes)
         - [Description des champs](#description-des-champs)
@@ -49,7 +49,7 @@ Pour ce cas d’usage, une base de données de type document comme **MongoDB** e
 - Installer ou mettre à jour Docker et Docker Compose pour disposer des dernières versions
 - Cloner le repo
 
-### Lancer la c
+### Lancer l'application
 
 - Aller dans le répertoire racine et exécuter `docker-compose up -d`
 -
