@@ -17,7 +17,7 @@
 
 **Wine Review API** fournit des données et des scores qualifiés sur les vins du monde entier.
 
-Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et sont issues d’un `webscraping` du site **WineEnthusiast** en juin 2017. L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression. Elle permet également de faire des recherches par titre et par score.
+Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et sont issues d’un `webscraping` du site **WineEnthusiast** en juin 2017. L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression. 
 
 ## A propos du dataset
 
