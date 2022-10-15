@@ -6,32 +6,23 @@ from app.repository.dbmanager import db
 from bson import ObjectId
 
 
-def get_all_review(page_size: int, page_num: int):
+def get_all_review(limit: int, offset: int):
+    """
+    > Get all documents from the `review` collection, skip `skips` documents, and limit the result to `limit` documents
+
+    :param limit: The number of documents to return
+    :type limit: int
+    :param offset: The page number
+    :type offset: int
+    :return: A list of documents
+    """
     # Calculate number of documents to skip
-    skips = page_size * (page_num - 1)
-    print(skips)
-    # Skip and limit
-    cursor = db['review'].find().skip(skips).limit(page_size)
+    skips = limit * (offset - 1)
+    cursor = db['review'].find().skip(skips).limit(limit)
 
     # Return documents
     return [document for document in cursor]
 
-
-"""
-filter={}
-sort=list({
-              '_id': -1
-          }.items())
-skip=20
-limit=20
-
-result = client['wine']['review'].find(
-    filter=filter,
-    sort=sort,
-    skip=skip,
-    limit=limit
-)
-"""
 
 def save_review(data: dict):
     return db['review'].insert_one(data)
