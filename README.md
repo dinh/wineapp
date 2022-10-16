@@ -65,7 +65,7 @@ $>docker-compose up -d
 ```
 
 <aside>
-💡 Les données sont importées au démarrage. Si la base de données existe, l’import est annulé
+💡 Les données sont importées au démarrage. Si la base de données existe, l’import est annulé.
 
 </aside>
 
@@ -81,19 +81,19 @@ $>docker-compose down
 
 La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/docs`
 
-<aside>
+### Note sur la pagination
 
-💡 Le endpoint `/api/reviews` permet de faire de la pagination.
+Etant donné le nombre important d'enregistrements dans la base de données, l'appel au endpoint `/api/reviews` 
+retourne par défaut les 20 premiers résultats. Il est cependant possible de contrôler le nombre de résultats
+obtenus avec les paramètres suivants:
 
-Par défaut, il retournera les 20 premiers résultats. Vous pouvez cependant changer le nombre de résultat à retourner avec le paramètre `limit`
-Le paramètre `offset` définit la page à afficher.
+* `limit` permet de spécifier le nombre maximum de résultats que l’on souhaite obtenir.
+* `offset` permet d'effectuer un décalage sur l'ensemble des résultats.
 
 Par exemple, la requête ci-dessous affichera les 50 résultats de la deuxième page:
 ```
 http://127.0.0.1/api/reviews?offset=2&limit=50
 ```
-
-</aside>
 
 ## Annexes
 
