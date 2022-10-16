@@ -51,7 +51,7 @@ Pour ce cas d’usage, une base de données de type document comme **MongoDB** e
 
 ### Prérequis
 
-Installer ou mettre à jour Docker et Docker Compose pour disposer des dernières versions
+Installer ou mettre à jour `docker` et `docker-compose` pour disposer des dernières versions
 
 ### Cloner le repo
 
