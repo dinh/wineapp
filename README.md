@@ -43,7 +43,7 @@ Pour le projet, nous avons choisi le format `JSON.`
 Comme il a été précisé précédemment, les données sont issues d’un `webscraping`  du site **WineEnthusiast**.
 Nous n’avons donc aucune garantie d’un schéma strict pour ces données. 
 En effet, le site web va évoluer, avoir de nouvelles pages, de nouvelles fonctionnalités. 
-Si nous voulons suivre l'utilisation de ces nouvelles fonctionnalités, il faudra peut-être mettre à jour le schéma de notre base de données.
+Si nous voulons utiliser de ces nouvelles fonctionnalités, il faudra peut-être mettre à jour le schéma de notre base de données.
 
 Pour ce cas d’usage, une base de données de type document comme **MongoDB** est appropriée. Les documents d'une collection Mongo sont sans schéma et n'ont aucune relation entre eux. Cela signifie que nous pouvons introduire de nouveaux champs à tout moment sans avoir besoin de réviser votre schéma de table au préalable, ce qui vous permet d'itérer plus rapidement.
 
@@ -97,6 +97,11 @@ obtenus avec les paramètres suivants:
 Par exemple, la requête ci-dessous affichera les 50 résultats de la deuxième page:
 ```
 http://127.0.0.1/api/reviews?offset=2&limit=50
+```
+
+Pour obtenir tous les enregistrements:
+```
+http://127.0.0.1/api/reviews?limit=0
 ```
 
 ## Annexes
