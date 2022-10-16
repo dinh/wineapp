@@ -17,7 +17,8 @@
 
 **Wine Review API** fournit des données et des scores qualifiés sur les vins du monde entier.
 
-Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et sont issues d’un `webscraping` du site **WineEnthusiast** en juin 2017. L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression. 
+Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et sont issues d’un `webscraping` du site **WineEnthusiast** en juin 2017. 
+L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression. 
 
 ## A propos du dataset
 
@@ -39,7 +40,10 @@ Pour le projet, nous avons choisi le format `JSON.`
 
 ### Pourquoi MongoDB ?
 
-Comme il a été précisé précédemment, les données sont issues d’un `webscraping`  du site **WineEnthusiast**. ****Nous n’avons donc aucune garantie d’un schéma strict pour ces données. En effet, le site web va évoluer, avoir de nouvelles pages, de nouvelles fonctionnalités. Si nous voulons suivre l'utilisation de ces nouvelles fonctionnalités, vous devons peut-être mettre à jour le schéma de notre base de données.
+Comme il a été précisé précédemment, les données sont issues d’un `webscraping`  du site **WineEnthusiast**.
+Nous n’avons donc aucune garantie d’un schéma strict pour ces données. 
+En effet, le site web va évoluer, avoir de nouvelles pages, de nouvelles fonctionnalités. 
+Si nous voulons suivre l'utilisation de ces nouvelles fonctionnalités, il faudra peut-être mettre à jour le schéma de notre base de données.
 
 Pour ce cas d’usage, une base de données de type document comme **MongoDB** est appropriée. Les documents d'une collection Mongo sont sans schéma et n'ont aucune relation entre eux. Cela signifie que nous pouvons introduire de nouveaux champs à tout moment sans avoir besoin de réviser votre schéma de table au préalable, ce qui vous permet d'itérer plus rapidement.
 
