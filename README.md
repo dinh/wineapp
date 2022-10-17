@@ -83,7 +83,7 @@ $>docker-compose down
 
 ## Documentation
 
-La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/api/docs`
+La documentation interractive de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/api/docs`
 
 ### /api/reviews 
 
@@ -112,7 +112,7 @@ au format mongodb telles que '$lt', '$gt', '$lte', '$gte', '$eq'.
 
 La requête ci-dessous va retourner tous les vins dont le prix est entre 86 et 90$:
 ```
-127.0.0.1:9090/api/reviews?limit=0&price=$gt:86,$lt:90
+http://127.0.0.1:9090/api/reviews?limit=0&price=$gt:86,$lt:90
 ```
 
 La requête suivante va retourner tous les vins ayant obtenus une
