@@ -22,7 +22,7 @@ def get_all_review(limit: int, offset: int, filters: dict):
     skips = limit * (offset - 1)
     cursor = db['review'].find(filter=filters).skip(skips).limit(limit)
 
-    #print(f"(filter={filters}).skip({skips}).limit({limit})")
+    print(f"(filter={filters}).skip({skips}).limit({limit})")
 
     # Return documents
     return [document for document in cursor]
