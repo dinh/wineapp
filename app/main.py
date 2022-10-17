@@ -1,4 +1,4 @@
-from starlette.responses import JSONResponse
+from starlette.responses import JSONResponse, RedirectResponse
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
@@ -25,7 +25,9 @@ app = FastAPI(
     title=info['name'],
     version=info['version'],
     description=description,
-    openapi_tags=tags_metadata
+    openapi_tags=tags_metadata,
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json"
 )
 
 app.add_middleware(
@@ -34,6 +36,11 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"])
+
+
+@app.get("/")
+def root():
+    return RedirectResponse(url="/api/docs")
 
 
 @app.get('/api/healthcheck')

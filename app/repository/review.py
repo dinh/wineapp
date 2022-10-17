@@ -6,19 +6,23 @@ from app.repository.dbmanager import db
 from bson import ObjectId
 
 
-def get_all_review(limit: int, offset: int):
+def get_all_review(limit: int, offset: int, filters: dict):
     """
     > Get all documents from the `review` collection, skip `skips` documents, and limit the result to `limit` documents
 
+    :param filters: mongodb filters format
+    :type filters: dict
     :param limit: The number of documents to return
     :type limit: int
     :param offset: The page number
     :type offset: int
     :return: A list of documents
     """
-    # Calculate number of documents to skip
+    # Calculate the number of documents to skip
     skips = limit * (offset - 1)
-    cursor = db['review'].find().skip(skips).limit(limit)
+    cursor = db['review'].find(filter=filters).skip(skips).limit(limit)
+
+    #print(f"(filter={filters}).skip({skips}).limit({limit})")
 
     # Return documents
     return [document for document in cursor]

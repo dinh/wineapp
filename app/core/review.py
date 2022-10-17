@@ -8,10 +8,10 @@ from app.repository.review import get_all_review
 from app.repository.review import delete_review
 
 
-class reviewCore:
+class ReviewCore:
     @staticmethod
-    def get_all(limit: int, offset: int) -> List[ReviewFullDB]:
-        return list(get_all_review(limit, offset))
+    def get_all(limit: int, offset: int, filters: dict) -> List[ReviewFullDB]:
+        return list(get_all_review(limit, offset, filters))
 
     @staticmethod
     def get_one(pid: str) -> ReviewFullDB:
