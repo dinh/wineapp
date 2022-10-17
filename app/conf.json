@@ -7,7 +7,7 @@
     "mongo": {
         "dbname": "winedb",
         "auth": false,
-        "address": "127.0.0.1",
+        "address": "mongodb",
         "port": 27017,
         "username": "",
         "password": ""
