@@ -18,7 +18,7 @@
 **Wine Review API** fournit des données et des scores qualifiés sur les vins du monde entier.
 
 Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et sont issues d’un `webscraping` du site **WineEnthusiast** en juin 2017. 
-L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression ainsi que des recherches simples sur le prix et les notes.
+L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression ainsi que des recherches simples sur les prix et les notes.
 
 ## A propos du dataset
 
@@ -83,7 +83,7 @@ $>docker-compose down
 
 ## Documentation
 
-La documentation de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/api/docs`
+La documentation interractive de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/api/docs`
 
 ### /api/reviews 
 
@@ -112,7 +112,7 @@ au format mongodb telles que '$lt', '$gt', '$lte', '$gte', '$eq'.
 
 La requête ci-dessous va retourner tous les vins dont le prix est entre 86 et 90$:
 ```
-127.0.0.1:9090/api/reviews?limit=0&price=$gt:86,$lt:90
+http://127.0.0.1:9090/api/reviews?limit=0&price=$gt:86,$lt:90
 ```
 
 La requête suivante va retourner tous les vins ayant obtenus une
