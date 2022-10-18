@@ -22,7 +22,7 @@ def get_all_review(limit: int, offset: int, filters: dict):
     skips = limit * (offset - 1)
     cursor = db['review'].find(filter=filters).skip(skips).limit(limit)
 
-    #print(f"(filter={filters}).skip({skips}).limit({limit})")
+    print(f"(filter={filters}).skip({skips}).limit({limit})")
 
     # Return documents
     return [document for document in cursor]
@@ -52,25 +52,3 @@ def delete_review(pid: str):
 
 def get_review(pid: str):
     return db['review'].find_one({'_id': ObjectId(pid)})
-
-
-'''
-async def get_user(conn: AsyncIOMotorClient, id: Optional[str] = None, username: Optional[str] = None,
-                   email: Optional[str] = None, mobile: Optional[str] = None) -> UserInDB:
-    if id:
-        row = await conn[database_name][user_collection_name].find_one({"id": id})
-        if row:
-            return UserInDB(**row)
-    if username:
-        row = await conn[database_name][user_collection_name].find_one({"username": username})
-        if row:
-            return UserInDB(**row)
-    if email:
-        row = await conn[database_name][user_collection_name].find_one({"email": email})
-        if row:
-            return UserInDB(**row)
-    if mobile:
-        row = await conn[database_name][user_collection_name].find_one({"mobile": mobile})
-        if row:
-            return UserInDB(**row)
-'''
