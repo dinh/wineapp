@@ -4,9 +4,9 @@
         - [Pourquoi MongoDB ?](#pourquoi-mongodb-)
     - [Installation](#installation)
         - [Prérequis](#prérequis)
-        - [Cloner le repo](#cloner-le-repo)
+        - [Cloner le repository](#cloner-le-repository)
         - [Lancement de l'application](#lancement-de-lapplication)
-        - [Stopper l’application](#stopper-lapplication)
+        - [Arrêter l’application](#arrêter-lapplication)
     - [Documentation](#documentation)
     - [Annexes](#annexes)
         - [Description des champs](#description-des-champs)
@@ -15,22 +15,19 @@
 
 # Wine Review API
 
-**Wine Review API** fournit des données et des scores qualifiés sur les vins du monde entier.
+**Wine Review API** fournit des données et des scores qualifiés sur les vins du monde entier. Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et ont été collectées en juin 2017 grâce au **webscraping** du site WineEnthusiast. L'API permet de réaliser des opérations standards telles que la création, la lecture, la mise à jour et la suppression, ainsi que des recherches simples sur les prix et les notes.
 
-Les données proviennent de [Kaggle](https://www.kaggle.com/datasets/zynicide/wine-reviews) et sont issues d’un `webscraping` du site **WineEnthusiast** en juin 2017. 
-L'API permet les faire des opérations standards telles que la création, la lecture, la mise à jour et la suppression ainsi que des recherches simples sur les prix et les notes.
-
-## A propos du dataset
+## À propos du dataset
 
 Le dataset obtenu contient trois fichiers :
 
-- `winemag-data-130k-v2.csv` contient 10 colonnes et 130k lignes de critiques de vins.
-- `winemag-data_first150k.csv` contient 10 colonnes et 150k lignes d'évaluations de vins.
-- `winemag-data-130k-v2.json` contient 6919 noeuds de critiques de vin.
+- `winemag-data-130k-v2.csv` contient 10 colonnes et 130 000 lignes de critiques de vins.
+- `winemag-data_first150k.csv` contient 10 colonnes et 150 000 lignes d'évaluations de vins.
+- `winemag-data-130k-v2.json` contient 6 919 noeuds de critiques de vin.
 
-La version 2 des données est la plus récente . Elle est proposée aux formats `JSON` et `CSV`.
+La version 2 des données est la plus récente. Elle est proposée aux formats `JSON` et `CSV`.
 
-Pour le projet, nous avons choisi le format `JSON.`
+Pour le projet, nous avons choisi le format `JSON`.
 
 ## La stack technique
 
@@ -40,85 +37,72 @@ Pour le projet, nous avons choisi le format `JSON.`
 
 ### Pourquoi MongoDB ?
 
-Comme il a été précisé précédemment, les données sont issues d’un `webscraping`  du site **WineEnthusiast**.
-Nous n’avons donc aucune garantie d’un schéma strict pour ces données. 
-En effet, le site web va évoluer, avoir de nouvelles pages, de nouvelles fonctionnalités. 
-Si nous voulons utiliser de ces nouvelles fonctionnalités, il faudra peut-être mettre à jour le schéma de notre base de données.
+Comme mentionné précédemment, les données proviennent d'un `webscraping` du site **WineEnthusiast**. Nous n'avons donc aucune garantie quant à un schéma strict pour ces données. En effet, le site web va évoluer, avoir de nouvelles pages et de nouvelles fonctionnalités. Si nous voulons utiliser ces nouvelles fonctionnalités, il faudra peut-être mettre à jour le schéma de notre base de données.
 
-Pour ce cas d’usage, une base de données de type document comme **MongoDB** est appropriée. Les documents d'une collection Mongo sont sans schéma et n'ont aucune relation entre eux. Cela signifie que nous pouvons introduire de nouveaux champs à tout moment sans avoir besoin de réviser votre schéma de table au préalable, ce qui vous permet d'itérer plus rapidement.
+Pour ce cas d'utilisation, une base de données de type document comme **MongoDB** est appropriée. Les documents d'une collection Mongo sont sans schéma et sans relation entre eux. Cela signifie que nous pouvons introduire de nouveaux champs à tout moment sans avoir besoin de réviser le schéma de notre table au préalable, ce qui nous permet d'itérer plus rapidement.
 
 ## Installation
 
 ### Prérequis
 
-Installer ou mettre à jour `docker` et `docker-compose` pour disposer des dernières versions
+Pour disposer des dernières versions, il est nécessaire d'installer ou de mettre à jour `docker` et `docker-compose`.
 
-### Cloner le repo
+### Cloner le repository
 
-```bash
-$>git clone https://github.com/dinh/wineapp.git
-```
+Exécutez la commande suivante pour cloner le repository :
+
+`$>git clone <https://github.com/dinh/wineapp.git`>
 
 ### Lancement de l'application
 
-Aller dans le répertoire racine et exécuter `docker-compose up -d`
+Allez dans le répertoire racine et exécutez la commande suivante pour lancer l'application :
 
-```bash
+```
 $>cd wineapp
 $>docker-compose up -d
+
 ```
 
-<aside>
-💡 Les données sont importées au démarrage. Si la base de données existe, l’import est annulé.
+💡 Les données sont importées au démarrage. Si la base de données existe, l'import est annulé.
 
-</aside>
+### Arrêter l'application
 
-### Stopper l’application
+Pour arrêter l'application, entrez la commande suivante dans la ligne de commande :
 
-Entrer dans la ligne de commande
-
-```bash
-$>docker-compose down
-```
+`$>docker-compose down`
 
 ## Documentation
 
-La documentation interractive de l'API est accessible à l'adresse suivante: `http://127.0.0.1:9090/api/docs`
+La documentation interactive de l'API est accessible à l'adresse suivante : `http://127.0.0.1:9090/api/docs`
 
-### /api/reviews 
+### /api/reviews
 
-#### Pagination
+### Pagination
 
-Etant donné le nombre important d'enregistrements dans la base de données, l'appel au endpoint `/api/reviews` 
-retourne par défaut les 20 premiers résultats. Il est cependant possible de contrôler le nombre de résultats
-obtenus avec les paramètres suivants:
+En raison du grand nombre d'enregistrements dans la base de données, l'appel à l'endpoint `/api/reviews` renvoie par défaut les 20 premiers résultats. Il est cependant possible de contrôler le nombre de résultats obtenus avec les paramètres suivants :
 
-* `limit` permet de spécifier le nombre maximum de résultats que l’on souhaite obtenir.
-* `offset` permet d'effectuer un décalage sur l'ensemble des résultats.
+- `limit` permet de spécifier le nombre maximal de résultats souhaités.
+- `offset` permet d'effectuer un décalage sur l'ensemble des résultats.
 
-Par exemple, la requête ci-dessous affichera les 50 résultats de la deuxième page:
-```
-http://127.0.0.1/api/reviews?offset=2&limit=50
-```
+Par exemple, la requête ci-dessous affichera les 50 résultats de la deuxième page :
 
-Pour obtenir tous les enregistrements:
-```
-http://127.0.0.1/api/reviews?limit=0
-```
+`http://127.0.0.1/api/reviews?offset=2&limit=50`
 
-#### Filtrage
-Il est possible de filtrer sur le prix (price) et la note (points) en utilisant les clés de filtrage
-au format mongodb telles que '$lt', '$gt', '$lte', '$gte', '$eq'.
+Pour obtenir tous les enregistrements :
 
-La requête ci-dessous va retourner tous les vins dont le prix est entre 86 et 90$:
-```
-http://127.0.0.1:9090/api/reviews?limit=0&price=$gt:86,$lt:90
-```
+`http://127.0.0.1/api/reviews?limit=0`
 
-La requête suivante va retourner tous les vins ayant obtenus une
-note supérieure ou égale à 87 et dont le prix est égale à 19$:
-```
-http://127.0.0.1:9090/api/reviews?limit=0&offset=1&points=$gte:87&price=$eq:19
+### Filtrage
+
+Il est possible de filtrer sur le prix (price) et la note (points) en utilisant les clés de filtrage au format mongodb telles que '$lt', '$gt', '$lte', '$gte', '$eq'.
+
+La requête ci-dessous va retourner tous les vins dont le prix est compris entre 86 et 90 $ :
+
+`http://127.0.0.1:9090/api/reviews?limit=0&price=$gt:86,$lt:90`
+
+La requête suivante va retourner tous les vins ayant obtenu une note supérieure ou égale à 87 et dont le prix est égal à 19 $ :
+
+`http://127.0.0.1:9090/api/reviews?limit=0&offset=1&points=$gte:87&price=$eq:19`
 ```
 
 ## Annexes
@@ -127,19 +111,19 @@ http://127.0.0.1:9090/api/reviews?limit=0&offset=1&points=$gte:87&price=$eq:19
 
 |  | Description |
 | --- | --- |
-| country | Pays de provenance du vin |
+| country | Le pays d'origine du vin |
 | description | Quelques phrases d'un sommelier décrivant le goût, l'odeur, l'aspect, le toucher, etc. du vin |
-| designation | Appellation : Le vignoble de l'établissement vinicole d'où proviennent les raisins qui ont donné naissance au vin |
-| points | Le nombre de points que WineEnthusiast a attribué au vin sur une échelle de 1 à 100 (bien qu'ils disent qu'ils ne publient des critiques que pour les vins qui obtiennent une note supérieure à 80). |
+| designation | L'appellation : le vignoble de l'établissement vinicole d'où proviennent les raisins qui ont donné naissance au vin |
+| points | Le nombre de points que WineEnthusiast a attribués au vin sur une échelle de 1 à 100 (bien qu'ils ne publient des critiques que pour les vins qui reçoivent une note supérieure à 80). |
 | price | Le coût d'une bouteille de vin |
-| province | La province ou l'état d'où provient le vin |
-| region_1 | La région viticole d'une province ou d'un état (par exemple Napa) |
+| province | La province ou l'État d'où provient le vin |
+| region_1 | La région viticole d'une province ou d'un État (par exemple Napa) |
 | region_2 | Parfois, des régions plus spécifiques sont spécifiées dans une zone viticole (par exemple Rutherford dans la vallée de Napa), mais cette valeur peut parfois être vide |
-| taster_name | Nom de la personne qui a goûté et évalué le vin. |
-| taster_twitter_handle | Identifiant Twitter de la personne qui a dégusté et évalué le vin |
+| taster_name | Le nom de la personne qui a goûté et évalué le vin |
+| taster_twitter_handle | L'identifiant Twitter de la personne qui a goûté et évalué le vin |
 | title | Le titre de la critique du vin, qui contient souvent le millésime si vous souhaitez extraire cette caractéristique |
-| variety | e type de raisin utilisé pour produire le vin (par exemple, Pinot Noir) |
-| winery |  |
+| variety | Le type de raisin utilisé pour produire le vin (par exemple, Pinot Noir) |
+| winery | Le nom du domaine producteur de vin |
 
 ### Champs ayant une valeur nulle
 
