@@ -147,7 +147,7 @@ Cela nous permet de créer un JsonSchema pour le dataset et nous permet de défi
 
 ### Json Schema
 
-Le JSON Schema est un format d'échange de données léger qui génère une documentation claire et facile à comprendre, facilitant ainsi la validation et les tests. JSON Schema est utilisé pour décrire la structure et les contraintes de validation des documents JSON. Dans notre cas, nous pourrions l’utiliser pour vérifier si les données scrappées évolue dans le temps. Nous pouvons l’utiliser  également pour générer le schema Pydantic.
+JSON Schema est un format d'échange de données léger qui permet de générer une documentation claire et facile à comprendre. Il facilite ainsi la validation et les tests. Il est utilisé pour décrire la structure et les contraintes de validation des documents JSON. Dans notre cas, nous pourrions l'utiliser pour vérifier si les données scrappées évoluent dans le temps. Nous pouvons également l'utiliser pour générer le schéma Pydantic.
 
 ```json
 {
