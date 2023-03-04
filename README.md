@@ -109,21 +109,21 @@ La requête suivante va retourner tous les vins ayant obtenu une note supérieur
 
 ### Description des champs
 
-|  | Description |
-| --- | --- |
-| country | Le pays d'origine du vin |
-| description | Quelques phrases d'un sommelier décrivant le goût, l'odeur, l'aspect, le toucher, etc. du vin |
-| designation | L'appellation : le vignoble de l'établissement vinicole d'où proviennent les raisins qui ont donné naissance au vin |
-| points | Le nombre de points que WineEnthusiast a attribués au vin sur une échelle de 1 à 100 (bien qu'ils ne publient des critiques que pour les vins qui reçoivent une note supérieure à 80). |
-| price | Le coût d'une bouteille de vin |
-| province | La province ou l'État d'où provient le vin |
-| region_1 | La région viticole d'une province ou d'un État (par exemple Napa) |
-| region_2 | Parfois, des régions plus spécifiques sont spécifiées dans une zone viticole (par exemple Rutherford dans la vallée de Napa), mais cette valeur peut parfois être vide |
-| taster_name | Le nom de la personne qui a goûté et évalué le vin |
-| taster_twitter_handle | L'identifiant Twitter de la personne qui a goûté et évalué le vin |
-| title | Le titre de la critique du vin, qui contient souvent le millésime si vous souhaitez extraire cette caractéristique |
-| variety | Le type de raisin utilisé pour produire le vin (par exemple, Pinot Noir) |
-| winery | Le nom du domaine producteur de vin |
+|                       |                                                                                       Description                                                                                      |
+|:---------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| country               | Le pays d'origine du vin                                                                                                                                                               |
+| description           | Quelques phrases d'un sommelier décrivant le goût, l'odeur, l'aspect, le toucher, etc. du vin                                                                                          |
+| designation           | L'appellation : le vignoble de l'établissement vinicole d'où proviennent les raisins qui ont donné naissance au vin                                                                    |
+| points                | Le nombre de points que WineEnthusiast a attribués au vin sur une échelle de 1 à 100 (bien qu'ils ne publient des critiques que pour les vins qui reçoivent une note supérieure à 80). |
+| price                 | Le coût d'une bouteille de vin                                                                                                                                                         |
+| province              | La province ou l'État d'où provient le vin                                                                                                                                             |
+| region_1              | La région viticole d'une province ou d'un État (par exemple Napa)                                                                                                                      |
+| region_2              | Parfois, des régions plus spécifiques sont spécifiées dans une zone viticole (par exemple Rutherford dans la vallée de Napa), mais cette valeur peut parfois être vide                 |
+| taster_name           | Le nom de la personne qui a goûté et évalué le vin                                                                                                                                     |
+| taster_twitter_handle | L'identifiant Twitter de la personne qui a goûté et évalué le vin                                                                                                                      |
+| title                 | Le titre de la critique du vin, qui contient souvent le millésime si vous souhaitez extraire cette caractéristique                                                                     |
+| variety               | Le type de raisin utilisé pour produire le vin (par exemple, Pinot Noir)                                                                                                               |
+| winery                | Le nom du domaine producteur de vin                                                                                                                                                    |
 
 ### Champs ayant une valeur nulle
 
