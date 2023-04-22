@@ -143,7 +143,7 @@ $>jq . winemag-data-130k-v2.json | grep -E -i null,$ | sort | uniq -c
 1         "variety": null,
 ```
 
-Cela nous permet de créer un JsonSchema pour le dataset et nous permet de définir le modèle `Pydantic`
+Cela nous permet de créer un JsonSchema pour le dataset. Ce shéma sera utilisé pour générer le modèle `Pydantic`.
 
 ### Json Schema
 
